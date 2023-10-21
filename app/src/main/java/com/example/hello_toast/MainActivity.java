@@ -1,5 +1,6 @@
 package com.example.hello_toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
@@ -30,4 +31,18 @@ public class MainActivity extends AppCompatActivity {
             mShowCount.setText(Integer.toString(mCount));
 
     }
+// save state when rotate screen
+    @Override
+    protected void  onSaveInstanceState(Bundle outState){
+        super.onSaveInstanceState(outState);
+        outState.putInt("key_counter",mCount);
+    }
+
+    @Override
+    protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState){
+        super.onRestoreInstanceState(savedInstanceState);
+        mCount = savedInstanceState.getInt("key_counter",0);
+        mShowCount.setText(Integer.toString(mCount));
+    }
+
 }
